@@ -1,0 +1,8 @@
+/Debug/*.*
+*.o
+*.so
+*.dll
+*.exe
+*.a
+*.lib
+/Debug/
