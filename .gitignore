@@ -1,0 +1,6 @@
+/Debug/
+*.[oa]
+*.cproject
+.settings/language.settings.xml
+.sysProps.xml
+

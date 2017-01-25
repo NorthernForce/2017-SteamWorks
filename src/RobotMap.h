@@ -1,5 +1,4 @@
-#ifndef ROBOTMAP_H
-#define ROBOTMAP_H
+#pragma once
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -18,4 +17,44 @@
 // constexpr int RANGE_FINDER_PORT = 1;
 // constexpr int RANGE_FINDER_MODULE = 1;
 
-#endif  // ROBOTMAP_H
+
+const int kFrontRightTalon = 1;
+const int kFrontLeftTalon = 3;
+const int kBackRightTalon = 4;
+const int kBackLeftTalon = 2;
+
+const int kSpikeAddress = 0;
+const int kRelayPortA = 0;
+
+const int kAttackJoystickTrigger = 0;
+const int kAttackJoystickButton2 = 1;
+const int kAttackJoystickButton3 = 2;
+const int kAttackJoystickButton4 = 3;
+const int kAttackJoystickButton5 = 4;
+const int kAttackJoystickButton6 = 5;
+const int kAttackJoystickButton7 = 6;
+const int kAttackJoystickButton8 = 7;
+const int kAttackJoystickButton9 = 8;
+const int kAttackJoystickButton10 = 9;
+const int kAttackJoystickButton11 = 10;
+//const int kAttackJoystickButton12 = 11;
+
+constexpr float kDeadbandLimit = 0.01;
+
+enum XBoxJoystickButtonPort
+{
+	// New mappings starting in 2015
+	kXBoxButtonA = 1,
+	kXBoxButtonB = 2,
+	kXBoxButtonX = 3,
+	kXBoxButtonY = 4,
+	kXBoxButtonLeft = 5,
+	kXBoxButtonRight = 6,
+	kXBoxButtonBack = 7,
+	kXBoxButtonStart = 8,
+	kXBoxButtonLeftJoystick = 9,
+	kXBoxButtonRightJoystick = 10,
+};
+
+const int kDriverStickPort = 0;
+const int kManipulatorStickPort = 1;
