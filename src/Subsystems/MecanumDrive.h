@@ -12,6 +12,8 @@ class MecanumDrive: public frc::Subsystem
 		void DriveMecanum(float x, float y, float rotation);
 		void init();
 
+		void RelayOn();
+
 	private:
 
 		frc::RobotDrive m_drive;
@@ -19,5 +21,7 @@ class MecanumDrive: public frc::Subsystem
 		CANTalon m_frontRight;
 		CANTalon m_backLeft;
 		CANTalon m_backRight;
+
+		frc::Relay m_relay;
 };
 

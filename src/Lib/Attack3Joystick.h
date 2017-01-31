@@ -39,17 +39,17 @@ class Attack3Joystick: public Joystick
 		bool GetButton10();
 		bool GetButton11();
 		//bool GetButton12();
-		frc::JoystickButton Trigger;
-		frc::JoystickButton Button2;
-		frc::JoystickButton Button3;
-		frc::JoystickButton Button4;
-		frc::JoystickButton Button5;
-		frc::JoystickButton Button6;
-		frc::JoystickButton Button7;
-		frc::JoystickButton Button8;
-		frc::JoystickButton Button9;
-		frc::JoystickButton Button10;
-		frc::JoystickButton Button11;
+		JoystickButton Trigger;
+		JoystickButton Button2;
+        JoystickButton Button3;
+		JoystickButton Button4;
+		JoystickButton Button5;
+		JoystickButton Button6;
+		JoystickButton Button7;
+		JoystickButton Button8;
+		JoystickButton Button9;
+		JoystickButton Button10;
+		JoystickButton Button11;
 		//frc::JoystickButton Button12;
 
 	private:
