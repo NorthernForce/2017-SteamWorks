@@ -9,8 +9,8 @@ void DriveWithJoystick::Initialize() {}
 
 void DriveWithJoystick::Execute()
 {
-	float x = oi->GetDriverStick().GetRightStickX();
-	float y = oi->GetDriverStick().GetRightStickY();
+	float x = oi->GetDriverStick().GetLeftStickX();
+	float y = oi->GetDriverStick().GetLeftStickY();
 	float w = oi->GetDriverStick().GetRightStickX();
 
 	x = pow(x, 2);
