@@ -1,8 +1,4 @@
-/Debug/*.*
-*.o
-*.so
-*.dll
-*.exe
-*.a
-*.lib
 /Debug/
+*.o
+*.a
+*.so
