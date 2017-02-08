@@ -7,7 +7,7 @@
 
 #include "OI.h"
 #include "Subsystems/MecanumDrive.h"
-#include "Subsystems/Flashlight.h"
+//#include "Subsystems/Flashlight.h"
 
 /**
  * The base for all commands. All atomic commands should subclass CommandBase.
@@ -23,7 +23,6 @@ class CommandBase: public frc::Command
 
 		// Create a single static instance of all of your subsystems
 		static std::unique_ptr<MecanumDrive> drive;
-		static std::unique_ptr<Flashlight> light;
+		//static std::unique_ptr<Flashlight> light;
 		static std::unique_ptr<OI> oi;
 };
-

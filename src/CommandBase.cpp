@@ -9,8 +9,8 @@
 std::unique_ptr<MecanumDrive> CommandBase::drive =
 		std::make_unique<MecanumDrive>();
 
-std::unique_ptr<Flashlight> CommandBase::light =
-		std::make_unique<Flashlight>();
+//std::unique_ptr<Flashlight> CommandBase::light =
+//		std::make_unique<Flashlight>();
 
 std::unique_ptr<OI> CommandBase::oi = std::make_unique<OI>();
 

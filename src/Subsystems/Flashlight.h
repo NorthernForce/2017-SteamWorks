@@ -1,3 +1,5 @@
+/*
+
 #pragma once
 
 #include <WPILib.h>
@@ -14,6 +16,8 @@ class Flashlight: public frc::Subsystem
 
 	private:
 
-		frc::Relay m_relay;
+		frc::Relay *m_relay;
 		bool       m_itsLit;
 };
+
+*/

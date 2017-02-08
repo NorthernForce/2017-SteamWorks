@@ -1,3 +1,5 @@
+/*
+
 #include <Commands/SetFlashlight.h>
 
 SetFlashlight::SetFlashlight() : m_IsFinished(false)
@@ -27,3 +29,4 @@ bool SetFlashlight::IsFinished() {return m_IsFinished;}
 void SetFlashlight::End() {}
 
 void SetFlashlight::Interrupted() {}
+*/

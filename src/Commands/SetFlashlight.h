@@ -1,3 +1,5 @@
+/*
+
 #pragma once
 
 #include "../CommandBase.h"
@@ -16,3 +18,4 @@ class SetFlashlight: public CommandBase
 		bool m_IsFinished;
 };
 
+*/
