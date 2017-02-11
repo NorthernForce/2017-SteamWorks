@@ -23,6 +23,8 @@ const int kFrontLeftTalon = 3;
 const int kBackRightTalon = 4;
 const int kBackLeftTalon = 2;
 
+const int kShooterTalon = 5;
+
 const int kSpikeAddress = 0;
 const int kRelayPortA = 0;
 
