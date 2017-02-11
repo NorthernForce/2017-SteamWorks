@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../CommandBase.h"
+#include <WPILib.h>
 
-class Auto: public CommandBase
+class Auto: public frc::Command
 {
 	public:
 		Auto();

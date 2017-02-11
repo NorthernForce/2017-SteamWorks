@@ -26,37 +26,38 @@ void MecanumDrive::init()
 
 	std::cout << "MecanumDrive::Init called!!!" << std::endl;
 
+	m_frontLeft.Set(0.0);
+	m_backLeft.Set(0.0);
+	m_frontRight.Set(0.0);
+	m_backRight.Set(0.0);
+
 	// Included in case the robot is wired strangely
-	m_drive.SetInvertedMotor(frc::RobotDrive::kFrontLeftMotor, true);
-	m_drive.SetInvertedMotor(frc::RobotDrive::kFrontRightMotor, true);
-	m_drive.SetInvertedMotor(frc::RobotDrive::kRearLeftMotor, false);
-	m_drive.SetInvertedMotor(frc::RobotDrive::kRearRightMotor, false);
 
 	//m_drive.SetMaxOutput(1.0);
 
-	m_frontLeft.SetTalonControlMode(CANTalon::kVoltageMode);
-	m_backLeft.SetTalonControlMode(CANTalon::kVoltageMode);
-	m_frontRight.SetTalonControlMode(CANTalon::kVoltageMode);
-	m_backRight.SetTalonControlMode(CANTalon::kVoltageMode);
+	//m_frontLeft.SetTalonControlMode(CANTalon::kVoltageMode);
+	//m_backLeft.SetTalonControlMode(CANTalon::kVoltageMode);
+	//m_frontRight.SetTalonControlMode(CANTalon::kVoltageMode);
+	//m_backRight.SetTalonControlMode(CANTalon::kVoltageMode);
 
 	//m_frontLeft->Enable();
 	//m_backLeft->Enable();
 	//m_frontRight->Enable();
 	//m_backRight->Enable();
 
-	m_frontLeft.Set(0.0);
-	m_backLeft.Set(0.0);
-	m_frontRight.Set(0.0);
-	m_backRight.Set(0.0);
 
-	m_drive.SetSafetyEnabled(false);
 	m_drive.SetExpiration(0.5);
+	m_drive.SetSafetyEnabled(false);
 
 	//m_frontLeft.SetVoltageRampRate(6.0);
 	//m_backLeft.SetVoltageRampRate(6.0);
 	//m_frontRight.SetVoltageRampRate(6.0);
 	//m_backRight.SetVoltageRampRate(6.0);
 	frc::SmartDashboard::PutString("MecanumDrive  init?", "Yesss");
+	m_drive.SetInvertedMotor(frc::RobotDrive::kFrontLeftMotor, true);
+	m_drive.SetInvertedMotor(frc::RobotDrive::kFrontRightMotor, true);
+	m_drive.SetInvertedMotor(frc::RobotDrive::kRearLeftMotor, false);
+	m_drive.SetInvertedMotor(frc::RobotDrive::kRearRightMotor, false);
 }
 
 void MecanumDrive::DriveMecanum(float x, float y, float rotation)

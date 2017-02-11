@@ -1,34 +1,26 @@
 #include <Commands/Auto.h>
 #include <memory>
 
-#include <Commands/Command.h>
-#include <Commands/Scheduler.h>
-#include <IterativeRobot.h>
-#include <LiveWindow/LiveWindow.h>
-#include <SmartDashboard/SendableChooser.h>
-#include <SmartDashboard/SmartDashboard.h>
+#include "Robot.h"
 
-#include "CommandBase.h"
+Robot Robot::m_robotInstance;
 
-class Robot: public frc::IterativeRobot
+Robot::Robot() : autonomousCommand(), chooser() {}
+
+void Robot::RobotInit()
 {
-	public:
-		void RobotInit() override
-		{
-			chooser.AddDefault("Default Auto", new Auto());
-			// chooser.AddObject("My Auto", new MyAutoCommand());
-			frc::SmartDashboard::PutData("Auto Modes", &chooser);
+	chooser.AddDefault("Default Auto", new Auto());
+	// chooser.AddObject("My Auto", new MyAutoCommand());
+	frc::SmartDashboard::PutData("Auto Modes", &chooser);
 
-			CommandBase::oi->init();
-			CommandBase::drive->init();
-		}
+	m_oi.init();
+	m_drive.init();
+}
 
-		void DisabledInit() override {}
-
-		void DisabledPeriodic() override
-		{
-			frc::Scheduler::GetInstance()->Run();
-		}
+void Robot::DisabledPeriodic()
+{
+	frc::Scheduler::GetInstance()->Run();
+}
 
 		/**
 		 * This autonomous (along with the chooser code above) shows how to select
@@ -41,54 +33,65 @@ class Robot: public frc::IterativeRobot
 		 * chooser code above (like the commented example) or additional comparisons
 		 * to the if-else structure below with additional strings & commands.
 		 */
-		void AutonomousInit() override
-		{
-			/* std::string autoSelected = frc::SmartDashboard::GetString("Auto Selector", "Default");
-			if (autoSelected == "My Auto") {
-				autonomousCommand.reset(new MyAutoCommand());
-			}
-			else {
-				autonomousCommand.reset(new ExampleCommand());
-			} */
+void Robot::AutonomousInit()
+{
+	/* std::string autoSelected = frc::SmartDashboard::GetString("Auto Selector", "Default");
+	if (autoSelected == "My Auto") {
+		autonomousCommand.reset(new MyAutoCommand());
+	}
+	else {
+		autonomousCommand.reset(new ExampleCommand());
+	} */
 
-			autonomousCommand.reset(chooser.GetSelected());
+	autonomousCommand.reset(chooser.GetSelected());
 
-			if (autonomousCommand.get() != nullptr)
-			{
-				autonomousCommand->Start();
-			}
-		}
+	if (autonomousCommand.get() != nullptr)
+	{
+		autonomousCommand->Start();
+	}
+}
 
-		void AutonomousPeriodic() override
-		{
-			frc::Scheduler::GetInstance()->Run();
-		}
+void Robot::AutonomousPeriodic()
+{
+	frc::Scheduler::GetInstance()->Run();
+}
 
-		void TeleopInit() override
-		{
-			// This makes sure that the autonomous stops running when
-			// teleop starts running. If you want the autonomous to
-			// continue until interrupted by another command, remove
-			// this line or comment it out.
-			if (autonomousCommand != nullptr)
-			{
-				autonomousCommand->Cancel();
-			}
-		}
+void Robot::TeleopInit()
+{
+	// This makes sure that the autonomous stops running when
+	// teleop starts running. If you want the autonomous to
+	// continue until interrupted by another command, remove
+	// this line or comment it out.
+	if (autonomousCommand != nullptr)
+	{
+		autonomousCommand->Cancel();
+	}
+}
 
-		void TeleopPeriodic() override
-		{
-			frc::Scheduler::GetInstance()->Run();
-		}
+void Robot::TeleopPeriodic()
+{
+	frc::Scheduler::GetInstance()->Run();
+}
 
-		void TestPeriodic() override
-		{
-			frc::LiveWindow::GetInstance()->Run();
-		}
+void Robot::TestPeriodic()
+{
+	frc::LiveWindow::GetInstance()->Run();
+}
 
-	private:
-		std::unique_ptr<frc::Command> autonomousCommand;
-		frc::SendableChooser<frc::Command*> chooser;
-};
+Robot& Robot::GetRobot()
+{
+	return m_robotInstance;
+}
+
+MecanumDrive& Robot::GetDrive()
+{
+	return GetRobot().m_drive;
+}
+
+OI& Robot::GetOI()
+{
+	return GetRobot().m_oi;
+}
+
 
 START_ROBOT_CLASS(Robot)
