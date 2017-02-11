@@ -1,18 +1,19 @@
 #include <Commands/DriveWithJoystick.h>
+#include "../Robot.h"
 #include <iostream>
 
 DriveWithJoystick::DriveWithJoystick()
 {
-	Requires(drive.get());
+	Requires(&Robot::GetDrive());
 }
 
 void DriveWithJoystick::Initialize() {}
 
 void DriveWithJoystick::Execute()
 {
-	float x = oi->GetDriverStick().GetLeftStickX();
-	float y = oi->GetDriverStick().GetLeftStickY();
-	float w = oi->GetDriverStick().GetRightStickX();
+	float x = Robot::GetOI().GetDriverStick().GetLeftStickX();
+	float y = Robot::GetOI().GetDriverStick().GetLeftStickY();
+	float w = Robot::GetOI().GetDriverStick().GetRightStickX();
 
 	frc::SmartDashboard::PutNumber("x: ", x);
 	frc::SmartDashboard::PutNumber("y: ", y);
@@ -24,7 +25,7 @@ void DriveWithJoystick::Execute()
 //	y = pow(y, 2);
 //	w = pow(w, 2);
 
-	drive->DriveMecanum(x, y, w);
+	Robot::GetDrive().DriveMecanum(x, y, w);
 
 	frc::SmartDashboard::PutString("Has driven?", "Yesss");
 

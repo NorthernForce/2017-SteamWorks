@@ -1,8 +1,8 @@
 #pragma once
 
-#include "../CommandBase.h"
+#include <WPILib.h>
 
-class DriveWithJoystick: public CommandBase
+class DriveWithJoystick: public frc::Command
 {
 	public:
 		DriveWithJoystick();
