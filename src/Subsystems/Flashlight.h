@@ -1,5 +1,3 @@
-/*
-
 #pragma once
 
 #include <WPILib.h>
@@ -20,4 +18,4 @@ class Flashlight: public frc::Subsystem
 		bool       m_itsLit;
 };
 
-*/
+

@@ -7,6 +7,7 @@
 #include <SmartDashboard/SendableChooser.h>
 #include <SmartDashboard/SmartDashboard.h>
 #include "Subsystems/MecanumDrive.h"
+#include "Subsystems/Flashlight.h"
 #include "OI.h"
 #include <WPILib.h>
 
@@ -26,6 +27,7 @@ class Robot: public frc::IterativeRobot
 
 		static Robot& GetRobot();
 		static MecanumDrive& GetDrive();
+		static Flashlight& GetLight();
 		static OI& GetOI();
 
 	private:
@@ -34,6 +36,7 @@ class Robot: public frc::IterativeRobot
 
 		static Robot m_robotInstance;
 		MecanumDrive m_drive;
+		Flashlight m_light;
 		OI m_oi;
 
 

@@ -1,5 +1,5 @@
 #include "OI.h"
-//#include "Commands/SetFlashlight.h"
+#include "Commands/SetFlashlight.h"
 
 
 #include <WPILib.h>
@@ -10,7 +10,7 @@ OI::OI() :
 
 void OI::init()
 {
-//	m_ManipulatorStick.Button2.ToggleWhenPressed(new SetFlashlight());
+	m_DriverStick.A.WhenPressed(new SetFlashlight());
 }
 
 FRCXboxJoystick& OI::GetDriverStick()

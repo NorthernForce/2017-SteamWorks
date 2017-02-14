@@ -21,14 +21,16 @@ void DriveWithJoystick::Execute()
 
 
 	// Squaring inputs to make for smoother driving
-//	x = pow(x, 2);
-//	y = pow(y, 2);
-//	w = pow(w, 2);
+	if(x < 0) { x = -pow(x, 2); }
+	else { x = pow(x, 2); }
+
+	if(y < 0) { y = -pow(x, 2); }
+	else { y = pow(x, 2); }
+
+	if(w < 0) { w = -pow(x, 2); }
+	else { w = pow(x, 2); }
 
 	Robot::GetDrive().DriveMecanum(x, y, w);
-
-	frc::SmartDashboard::PutString("Has driven?", "Yesss");
-
 }
 
 bool DriveWithJoystick::IsFinished() {return false;}

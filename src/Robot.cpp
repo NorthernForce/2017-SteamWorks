@@ -15,6 +15,7 @@ void Robot::RobotInit()
 
 	m_oi.init();
 	m_drive.init();
+	m_light.init();
 }
 
 void Robot::DisabledPeriodic()
@@ -86,6 +87,11 @@ Robot& Robot::GetRobot()
 MecanumDrive& Robot::GetDrive()
 {
 	return GetRobot().m_drive;
+}
+
+Flashlight& Robot::GetLight()
+{
+	return GetRobot().m_light;
 }
 
 OI& Robot::GetOI()

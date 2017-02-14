@@ -1,5 +1,3 @@
-/*
-
 #include "Flashlight.h"
 #include "../Commands/SetFlashlight.h"
 
@@ -8,10 +6,7 @@ Flashlight::Flashlight() :
 		frc::Subsystem("Flashlight"),
 		m_relay(0),
 		m_itsLit(false)
-		{
-			m_relay = new Relay(0);
-
-		}
+		{}
 
 void Flashlight::InitDefaultCommand()
 {
@@ -20,6 +15,7 @@ void Flashlight::InitDefaultCommand()
 
 void Flashlight::init()
 {
+	m_relay = new Relay(1, frc::Relay::kBothDirections);
 
 }
 
@@ -44,4 +40,4 @@ bool Flashlight::GetItsLit()
 	return m_itsLit;
 }
 
-*/
+

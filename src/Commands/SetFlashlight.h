@@ -1,10 +1,8 @@
-/*
-
 #pragma once
 
-#include "../CommandBase.h"
+#include <WPILib.h>
 
-class SetFlashlight: public CommandBase
+class SetFlashlight: public frc::Command
 {
 	public:
 		SetFlashlight();
@@ -18,4 +16,4 @@ class SetFlashlight: public CommandBase
 		bool m_IsFinished;
 };
 
-*/
+

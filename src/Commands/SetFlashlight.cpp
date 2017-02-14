@@ -1,24 +1,23 @@
-/*
-
 #include <Commands/SetFlashlight.h>
+#include "../Robot.h"
 
 SetFlashlight::SetFlashlight() : m_IsFinished(false)
 {
-	Requires(light.get());
+	Requires(&Robot::GetLight());
 }
 
 void SetFlashlight::Initialize() {}
 
 void SetFlashlight::Execute()
 {
-	if(light.get()->GetItsLit())
+	if(Robot::GetLight().GetItsLit())
 	{
-		light.get()->Set(false);
+		Robot::GetLight().Set(false);
 	}
 
-	else if(!light.get()->GetItsLit())
+	else if(!Robot::GetLight().GetItsLit())
 	{
-		light.get()->Set(true);
+		Robot::GetLight().Set(true);
 	}
 
 	m_IsFinished = true;
@@ -29,4 +28,4 @@ bool SetFlashlight::IsFinished() {return m_IsFinished;}
 void SetFlashlight::End() {}
 
 void SetFlashlight::Interrupted() {}
-*/
+

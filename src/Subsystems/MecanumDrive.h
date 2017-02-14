@@ -20,6 +20,5 @@ class MecanumDrive: public frc::Subsystem
 		CANTalon m_backLeft;
 		CANTalon m_backRight;
 		frc::RobotDrive m_drive;
-
 };
 
