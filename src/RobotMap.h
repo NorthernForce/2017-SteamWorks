@@ -37,6 +37,15 @@ const int kAttackJoystickButton8 = 7;
 const int kAttackJoystickButton9 = 8;
 const int kAttackJoystickButton10 = 9;
 const int kAttackJoystickButton11 = 10;
+
+
+//ultrasonic assignments
+//digital ports
+const int kGearUltraPing = 0;
+const int kShooterUltraPing = 2;
+const int kGearUltraEcho = 1;
+const int kShooterUltraEcho = 3;
+
 //const int kAttackJoystickButton12 = 11;
 
 constexpr float kDeadbandLimit = 0.01;
