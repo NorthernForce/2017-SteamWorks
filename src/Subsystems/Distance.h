@@ -2,7 +2,7 @@
 
 #include <WPILib.h>
 //#include "../Commands/RangeReadout.h"
-#include "SubsystemWithCommand.hpp"
+#include <RobotMap.h>
 
 
 class Distance: public SubsystemWithCommand<void>
