@@ -9,7 +9,7 @@ class MecanumDrive: public frc::Subsystem
 	public:
 		MecanumDrive();
 		void InitDefaultCommand() override;
-		void DriveMecanum(float xVel, float yVel, float rotation);
+		void DriveMecanum(float xVel, float yVel, float rotation, float gyro);
 		void init();
 
 

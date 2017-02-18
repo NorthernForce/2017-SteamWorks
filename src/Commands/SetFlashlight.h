@@ -1,3 +1,5 @@
+/*
+
 #pragma once
 
 #include <WPILib.h>
@@ -15,5 +17,7 @@ class SetFlashlight: public frc::Command
 	private:
 		bool m_IsFinished;
 };
+
+*/
 
 

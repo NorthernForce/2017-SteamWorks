@@ -8,8 +8,7 @@ MecanumDrive::MecanumDrive() :
 		m_frontRight(kFrontRightTalon),
 		m_backLeft(kBackLeftTalon),
 		m_backRight(kBackRightTalon),
-		m_drive(m_frontLeft, m_frontRight, m_backLeft, m_backRight)
-		{}
+		m_drive(m_frontLeft, m_frontRight, m_backLeft, m_backRight) {}
 
 void MecanumDrive::InitDefaultCommand()
 {
@@ -32,13 +31,14 @@ void MecanumDrive::init()
 	m_drive.SetInvertedMotor(frc::RobotDrive::kRearRightMotor, false);
 }
 
-void MecanumDrive::DriveMecanum(float x, float y, float rotation)
+void MecanumDrive::DriveMecanum(float x, float y, float rotation, float gyro)
 {
 	init();
 
-	m_drive.MecanumDrive_Cartesian(double(x), double(y), double(rotation));
+	m_drive.MecanumDrive_Cartesian(double(x), double(y), double(rotation), double(gyro));
 	frc::SmartDashboard::PutNumber("DriveMecanum x", x);
 	frc::SmartDashboard::PutNumber("DriveMecanum y", y);
 	frc::SmartDashboard::PutNumber("DriveMecanum rotation", rotation);
+	frc::SmartDashboard::PutNumber("Gyro", gyro);
 }
 

@@ -23,6 +23,11 @@ const int kFrontLeftTalon = 3;
 const int kBackRightTalon = 4;
 const int kBackLeftTalon = 2;
 
+const int kShooter = 5; // THIS IS NOT TRUE
+const int kWaterWheels = 6; //THIS IS NOT TRUE
+const int kIntake = 7; //THIS IS NOT TRUE
+const int kClimber = 8; //THIS IS NOT TRUE
+
 const int kSpikeAddress = 0;
 const int kRelayPortA = 0;
 

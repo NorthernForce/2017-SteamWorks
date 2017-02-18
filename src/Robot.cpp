@@ -5,7 +5,50 @@
 
 Robot Robot::m_robotInstance;
 
-Robot::Robot() : autonomousCommand(), chooser() {}
+Robot::Robot() : autonomousCommand(), chooser()
+{
+	//m_light = new Relay(1);
+}
+
+Robot& Robot::GetRobot()
+{
+	return m_robotInstance;
+}
+
+MecanumDrive& Robot::GetDrive()
+{
+	return GetRobot().m_drive;
+}
+
+GyroSensor& Robot::GetGyro()
+{
+	return GetRobot().m_gyro;
+}
+
+Shooter& Robot::GetShooter()
+{
+	return GetRobot().m_shooter;
+}
+
+Intake& Robot::GetIntake()
+{
+	return GetRobot().m_intake;
+}
+
+Climber& Robot::GetClimber()
+{
+	return GetRobot().m_climber;
+}
+
+//Flashlight& Robot::GetLight()
+//{
+//	return GetRobot().m_light;
+//}
+
+OI& Robot::GetOI()
+{
+	return GetRobot().m_oi;
+}
 
 void Robot::RobotInit()
 {
@@ -15,7 +58,12 @@ void Robot::RobotInit()
 
 	m_oi.init();
 	m_drive.init();
-	m_light.init();
+	m_shooter.init();
+	m_intake.init();
+	m_climber.init();
+	//m_light.init();
+
+
 }
 
 void Robot::DisabledPeriodic()
@@ -63,6 +111,8 @@ void Robot::TeleopInit()
 	// teleop starts running. If you want the autonomous to
 	// continue until interrupted by another command, remove
 	// this line or comment it out.
+
+	frc::CameraServer::GetInstance()->StartAutomaticCapture();
 	if (autonomousCommand != nullptr)
 	{
 		autonomousCommand->Cancel();
@@ -71,6 +121,10 @@ void Robot::TeleopInit()
 
 void Robot::TeleopPeriodic()
 {
+
+	//m_light->Set(frc::Relay::kForward);
+
+
 	frc::Scheduler::GetInstance()->Run();
 }
 
@@ -79,25 +133,6 @@ void Robot::TestPeriodic()
 	frc::LiveWindow::GetInstance()->Run();
 }
 
-Robot& Robot::GetRobot()
-{
-	return m_robotInstance;
-}
-
-MecanumDrive& Robot::GetDrive()
-{
-	return GetRobot().m_drive;
-}
-
-Flashlight& Robot::GetLight()
-{
-	return GetRobot().m_light;
-}
-
-OI& Robot::GetOI()
-{
-	return GetRobot().m_oi;
-}
 
 
 START_ROBOT_CLASS(Robot)

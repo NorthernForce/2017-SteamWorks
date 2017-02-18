@@ -1,3 +1,5 @@
+/*
+
 #include <Commands/SetFlashlight.h>
 #include "../Robot.h"
 
@@ -28,4 +30,6 @@ bool SetFlashlight::IsFinished() {return m_IsFinished;}
 void SetFlashlight::End() {}
 
 void SetFlashlight::Interrupted() {}
+
+*/
 
