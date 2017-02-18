@@ -1,8 +1,12 @@
+/*
+
 #pragma once
 
 #include <WPILib.h>
 #include <AHRS.h>
 #include "RobotMap.h"
+
+*/
 
 /* The gyro we are using requires external libraries, namely the AHRS.h file.
  * This can be found at http://www.pdocs.kauailabs.com/navx-mxp/software/roborio-libraries/c/
@@ -12,6 +16,8 @@
  * and even quaternions. These values will be useful in both teleop (on the dashboard) and autonomous,
  * where the robot will be able to drive straight, for certain distances, at certain speeds, etc.
  */
+
+/*
 
 class GyroSensor: public Subsystem
 {
@@ -28,3 +34,7 @@ class GyroSensor: public Subsystem
 		AHRS *m_gyro;
 
 };
+
+*/
+
+

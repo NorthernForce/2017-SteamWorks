@@ -1,5 +1,3 @@
-/*
-
 #pragma once
 
 #include <WPILib.h>
@@ -9,6 +7,7 @@ class Flashlight: public frc::Subsystem
 {
 	public:
 		Flashlight();
+		~Flashlight();
 		void InitDefaultCommand();
 		void Set(bool isOn);
 		void init();
@@ -16,11 +15,12 @@ class Flashlight: public frc::Subsystem
 
 	private:
 
-		frc::Relay *m_relay;
 		bool       m_itsLit;
+		frc::Relay *m_relay;
+
 };
 
-*/
+
 
 
 

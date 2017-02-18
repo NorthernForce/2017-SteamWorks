@@ -1,5 +1,3 @@
-/*
-
 #include <Commands/SetFlashlight.h>
 #include "../Robot.h"
 
@@ -31,5 +29,5 @@ void SetFlashlight::End() {}
 
 void SetFlashlight::Interrupted() {}
 
-*/
+
 

@@ -7,11 +7,11 @@
 #include <SmartDashboard/SendableChooser.h>
 #include <SmartDashboard/SmartDashboard.h>
 #include "Subsystems/MecanumDrive.h"
-#include "Subsystems/GyroSensor.h"
+//#include "Subsystems/GyroSensor.h"
 #include "Subsystems/Shooter.h"
 #include "Subsystems/Intake.h"
 #include "Subsystems/Climber.h"
-//#include "Subsystems/Flashlight.h"
+#include "Subsystems/Flashlight.h"
 #include "OI.h"
 #include <WPILib.h>
 
@@ -24,11 +24,11 @@ class Robot: public frc::IterativeRobot
 
 		static Robot& GetRobot();
 		static MecanumDrive& GetDrive();
-		static GyroSensor& GetGyro();
+		//static GyroSensor& GetGyro();
 		static Shooter& GetShooter();
 		static Intake& GetIntake();
 		static Climber& GetClimber();
-		//static Flashlight& GetLight();
+		static Flashlight& GetLight();
 		static OI& GetOI();
 
 
@@ -40,11 +40,11 @@ class Robot: public frc::IterativeRobot
 
 		static Robot m_robotInstance;
 		MecanumDrive m_drive;
-		GyroSensor m_gyro;
+		//GyroSensor m_gyro;
 		Shooter m_shooter;
 		Intake m_intake;
 		Climber m_climber;
-		//Flashlight m_light;
+		Flashlight m_light;
 
 		OI m_oi;
 

@@ -1,3 +1,5 @@
+/*
+
 #include "GyroSensor.h"
 
 
@@ -15,6 +17,8 @@ void GyroSensor::init()
 
 void GyroSensor::GetGyro()
 {
+
+*/
 	//SmartDashboard::PutBoolean( "Gyro_Connected",        m_gyro->IsConnected());
 	//SmartDashboard::PutNumber(  "Gyro_Yaw",              m_gyro->GetYaw());
 	//SmartDashboard::PutNumber(  "Gyro_Pitch",            m_gyro->GetPitch());
@@ -37,7 +41,8 @@ void GyroSensor::GetGyro()
 	//SmartDashboard::PutNumber(  "Velocity_Y",           m_gyro->GetVelocityY() );
 	//SmartDashboard::PutNumber(  "Displacement_X",       m_gyro->GetDisplacementX() );
 	//SmartDashboard::PutNumber(  "Displacement_Y",       m_gyro->GetDisplacementY() );
-}
+/*}
+
 
 void GyroSensor::Zero()
 {
@@ -53,3 +58,5 @@ float GyroSensor::GetDisplacement()
 {
 	return m_gyro->GetDisplacementX();
 }
+
+*/

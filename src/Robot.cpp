@@ -20,10 +20,10 @@ MecanumDrive& Robot::GetDrive()
 	return GetRobot().m_drive;
 }
 
-GyroSensor& Robot::GetGyro()
-{
-	return GetRobot().m_gyro;
-}
+//GyroSensor& Robot::GetGyro()
+//{
+//	return GetRobot().m_gyro;
+//}
 
 Shooter& Robot::GetShooter()
 {
@@ -40,10 +40,10 @@ Climber& Robot::GetClimber()
 	return GetRobot().m_climber;
 }
 
-//Flashlight& Robot::GetLight()
-//{
-//	return GetRobot().m_light;
-//}
+Flashlight& Robot::GetLight()
+{
+	return GetRobot().m_light;
+}
 
 OI& Robot::GetOI()
 {
@@ -61,7 +61,7 @@ void Robot::RobotInit()
 	m_shooter.init();
 	m_intake.init();
 	m_climber.init();
-	//m_light.init();
+	m_light.init();
 
 
 }

@@ -1,8 +1,6 @@
 #include "OI.h"
-//#include "Commands/SetFlashlight.h"
+#include "Commands/SetFlashlight.h"
 
-
-#include <WPILib.h>
 
 OI::OI() :
 	m_DriverStick(kDriverStickPort),
@@ -10,7 +8,7 @@ OI::OI() :
 
 void OI::init()
 {
-	//m_DriverStick.A.WhenPressed(new SetFlashlight());
+	m_DriverStick.A.WhenPressed(new SetFlashlight());
 }
 
 FRCXboxJoystick& OI::GetDriverStick()
