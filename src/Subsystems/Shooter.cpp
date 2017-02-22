@@ -2,27 +2,45 @@
 
 
 Shooter::Shooter() :
-		frc::Subsystem("Shooter"),
-		m_shooterTalon(kShooterTalon)
-		{}
-
-void Shooter::InitDefaultCommand()
-{
-	//SetDefaultCommand();
-}
+	Subsystem("Shooter"),
+	m_shooter(kShooter),
+	m_wheels(kWaterWheels) {}
 
 void Shooter::init()
 {
-	//add fun stuff later
+	m_shooter.Set(0.0);
+	m_shooter.SetExpiration(0.5);
+	m_shooter.SetSafetyEnabled(false);
+
+	m_wheels.Set(0.0);
+	m_wheels.SetExpiration(0.5);
+	m_wheels.SetSafetyEnabled(false);
 }
 
-void Shooter::Shoot()
+void Shooter::SetShooter(bool set)
 {
-	//add fun stuff later
+	if(set)
+	{
+		m_shooter.Set(0.5);
+	}
+
+	else
+	{
+		m_shooter.Set(0.0);
+	}
 }
 
-void Shooter::Expell()
+void Shooter::SetWaterWheels(bool set)
 {
-	//add fun stuff later
+	if(set)
+	{
+		m_wheels.Set(0.5);
+	}
+
+	else
+	{
+		m_wheels.Set(0.0);
+	}
 }
+
 

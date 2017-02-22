@@ -1,21 +1,21 @@
 #pragma once
 
 #include <WPILib.h>
-#include "../RobotMap.h"
+#include <CANTalon.h>
+#include "RobotMap.h"
 
-class Shooter: public frc::Subsystem
+
+class Shooter: public Subsystem
 {
 	public:
-		Shooter();
-		void InitDefaultCommand() override;
-		void init();
-		void Shoot();
-		void Expell();
 
+		Shooter();
+		void init();
+		void SetShooter(bool set);
+		void SetWaterWheels(bool set);
 
 	private:
-
-		frc::Talon m_shooterTalon;
-
+		CANTalon m_shooter;
+		CANTalon m_wheels;
 };
 
