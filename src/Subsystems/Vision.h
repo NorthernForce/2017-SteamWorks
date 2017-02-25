@@ -1,5 +1,5 @@
-#ifndef EXAMPLE_SUBSYSTEM_H
-#define EXAMPLE_SUBSYSTEM_H
+#ifndef VISION_H
+#define VISION_H
 
 #include <Subsystems/Vision.h>
 #include "Lib/PIXYCam.h"

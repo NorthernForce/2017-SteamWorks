@@ -1,11 +1,12 @@
 #include <Commands/DriveWithVision.h>
 #include <Subsystems/Vision.h>
 #include "DriveWithVision.h"
+#include "../Robot.h"
 
-DriveWithVision::DriveWithVision() : CommandBase("DriveWithVision")
+DriveWithVision::DriveWithVision()
 {
 	// Use Requires() here to declare subsystem dependencies
-	Requires(pixy0.get());
+	Requires(&Robot::GetPixy0());
 }
 
 // Called just before this Command runs the first time
@@ -18,7 +19,7 @@ void DriveWithVision::Initialize()
 void DriveWithVision::Execute()
 {
     Block b;
-    b = pixy0.get()->readPIXYCam();
+    b = Robot::GetPixy0().readPIXYCam();
     SmartDashboard::PutNumber("signature", b.signature );
     SmartDashboard::PutNumber("x", b.x );
     SmartDashboard::PutNumber("y", b.y );

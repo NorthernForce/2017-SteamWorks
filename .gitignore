@@ -1,1 +1,9 @@
 /Debug/
+<<<<<<< HEAD
+=======
+*.[oa]
+*.cproject
+.settings/language.settings.xml
+.sysProps.xml
+
+>>>>>>> 8c2d677a74dd79450fe29001fb24d2e7e0aeec3a

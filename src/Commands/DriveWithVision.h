@@ -1,11 +1,10 @@
 #ifndef DRIVE_WITH_VISION_H
 #define DRIVE_WITH_VISION_H
 
-#include "CommandBase.h"
 #include <Subsystems/Vision.h>
 #include "WPILib.h"
 
-class DriveWithVision: public CommandBase
+class DriveWithVision: public frc::Command
 {
 public:
 	DriveWithVision();
