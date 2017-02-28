@@ -15,7 +15,7 @@ void SetFlashlight::Execute()
 		Robot::GetLight().Set(false);
 	}
 
-	else if(!Robot::GetLight().GetItsLit())
+	else
 	{
 		Robot::GetLight().Set(true);
 	}

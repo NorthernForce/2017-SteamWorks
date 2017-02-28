@@ -8,6 +8,8 @@ class Flashlight: public frc::Subsystem
 	public:
 		Flashlight();
 		~Flashlight();
+		Flashlight(const Flashlight&);
+		Flashlight& operator=(const Flashlight&);
 		void InitDefaultCommand();
 		void Set(bool isOn);
 		void init();

@@ -1,26 +1,20 @@
-/*
-
 #include "GyroSensor.h"
 
 
 GyroSensor::GyroSensor() :
 	Subsystem("Gyro Sensor"),
-	m_gyro(0)
-{
-	m_gyro = new AHRS(frc::SerialPort::kMXP);
-}
+	m_gyro(0) {}
 
 void GyroSensor::init()
 {
+	m_gyro = new AHRS(frc::SerialPort::kMXP);
 	Zero();
 }
 
 void GyroSensor::GetGyro()
 {
-
-*/
 	//SmartDashboard::PutBoolean( "Gyro_Connected",        m_gyro->IsConnected());
-	//SmartDashboard::PutNumber(  "Gyro_Yaw",              m_gyro->GetYaw());
+	frc::SmartDashboard::PutNumber(  "Gyro_Yaw",              m_gyro->GetYaw());
 	//SmartDashboard::PutNumber(  "Gyro_Pitch",            m_gyro->GetPitch());
 	//SmartDashboard::PutNumber(  "Gyro_Roll",             m_gyro->GetRoll());
 	//SmartDashboard::PutNumber(  "Gyro_CompassHeading",   m_gyro->GetCompassHeading());
@@ -41,7 +35,7 @@ void GyroSensor::GetGyro()
 	//SmartDashboard::PutNumber(  "Velocity_Y",           m_gyro->GetVelocityY() );
 	//SmartDashboard::PutNumber(  "Displacement_X",       m_gyro->GetDisplacementX() );
 	//SmartDashboard::PutNumber(  "Displacement_Y",       m_gyro->GetDisplacementY() );
-/*}
+}
 
 
 void GyroSensor::Zero()
@@ -59,4 +53,8 @@ float GyroSensor::GetDisplacement()
 	return m_gyro->GetDisplacementX();
 }
 
-*/
+AHRS* GyroSensor::GetGyroObject()
+{
+	return m_gyro;
+}
+

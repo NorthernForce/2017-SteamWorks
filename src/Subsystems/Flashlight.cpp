@@ -1,5 +1,6 @@
 #include "Flashlight.h"
 //#include "../Commands/SetFlashlight.h"
+#include <iostream>
 
 
 
@@ -11,9 +12,36 @@ Flashlight::Flashlight() :
 			//m_relay = new Relay(1);
 		}
 
+Flashlight::Flashlight(const Flashlight& other) :
+		frc::Subsystem("Flashlight")
+{
+	std::cout << "Copy constructor has been called" << std::endl;
+
+	if(this != &other)
+	{
+		m_itsLit = other.m_itsLit;
+		m_relay = 0;
+	}
+}
+
+Flashlight& Flashlight::operator =(const Flashlight& other)
+{
+	std::cout << "Assignment operator has been called" << std::endl;
+
+	if(this != &other)
+	{
+		m_itsLit = other.m_itsLit;
+		m_relay = 0;
+	}
+
+	return *this;
+}
+
 Flashlight::~Flashlight()
 {
 	delete m_relay;
+
+	std::cout << "Our relay is in a better place now" << std::endl;
 }
 
 void Flashlight::InitDefaultCommand()
@@ -23,18 +51,19 @@ void Flashlight::InitDefaultCommand()
 
 void Flashlight::init()
 {
-	if(!m_relay)
-	{
-		m_relay = new Relay(1);
-	}
+
+	m_relay = new Relay(1);
+
+	std::cout << "Initialized from Flashlight::init()" << std::endl;
+
 
 	m_relay->Set(frc::Relay::kForward);
 	m_itsLit = true;
-	m_relay->SetExpiration(0.1);
-	m_relay->SetSafetyEnabled(false);
+	//m_relay->SetExpiration(0.1);
+	//m_relay->SetSafetyEnabled(false);
 }
 
-void Flashlight::Set(bool isOn)
+void Flashlight::Set(bool turnOn)
 {
 	//init();
 
@@ -45,10 +74,15 @@ void Flashlight::Set(bool isOn)
 	if(!m_relay)
 	{
 		m_relay = new Relay(1);
+
+		m_relay->Set(frc::Relay::kForward);
+		m_itsLit = true;
+
+		std::cout << "Initialized in Flashlight::Set()" << std::endl;
 	}
 
 
-	if(isOn)
+	if(turnOn)
 	{
 		m_relay->Set(frc::Relay::kForward);
 		m_itsLit = true;
@@ -56,7 +90,7 @@ void Flashlight::Set(bool isOn)
 
 	else
 	{
-		m_relay->Set(frc::Relay::kOff);
+		m_relay->Set(frc::Relay::kReverse);
 		m_itsLit = false;
 
 	}
