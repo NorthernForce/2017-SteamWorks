@@ -1,6 +1,7 @@
 #include "OI.h"
 #include "Commands/SetFlashlight.h"
 #include "Commands/DriveToAngle.h"
+#include "Commands/DriveWithJoystick.h"
 
 
 OI::OI() :
@@ -11,6 +12,7 @@ void OI::init()
 {
 	m_DriverStick.A.WhenPressed(new SetFlashlight());
 	m_DriverStick.B.WhenPressed(new DriveToAngle());
+	m_DriverStick.X.WhenPressed(new DriveWithJoystick());
 }
 
 FRCXboxJoystick& OI::GetDriverStick()

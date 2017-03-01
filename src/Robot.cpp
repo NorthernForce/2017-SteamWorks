@@ -4,8 +4,8 @@
 #include "Robot.h"
 
 Robot Robot::m_robotInstance;
-//MecanumDrive Robot::m_drive;
-GyroSensor Robot::m_gyro;
+MecanumDrive Robot::m_drive;
+//GyroSensor Robot::m_gyro;
 Shooter Robot::m_shooter;
 Intake Robot::m_intake;
 Climber Robot::m_climber;
@@ -27,10 +27,10 @@ MecanumDrive& Robot::GetDrive()
 	return GetRobot().m_drive;
 }
 
-GyroSensor& Robot::GetGyro()
-{
-	return GetRobot().m_gyro;
-}
+//GyroSensor& Robot::GetGyro()
+//{
+//	return GetRobot().m_gyro;
+//}
 
 Shooter& Robot::GetShooter()
 {
@@ -65,7 +65,7 @@ void Robot::RobotInit()
 
 	m_oi.init();
 	m_drive.init();
-	m_gyro.init();
+	//m_gyro.init();
 	m_shooter.init();
 	m_intake.init();
 	m_climber.init();

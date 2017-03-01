@@ -6,18 +6,17 @@
 DriveToAngle::DriveToAngle() : m_IsFinished(false)
 {
 	Requires(&Robot::GetDrive());
-	Requires(&Robot::GetGyro());
 }
 
 void DriveToAngle::Initialize() {}
 
 void DriveToAngle::Execute()
 {
-	float angle = Robot::GetOI().GetDriverStick().GetLeftTrigger();
-	Robot::GetDrive().DriveToAngle(Robot::GetGyro().GetGyroObject(), angle);
+	double angle = frc::SmartDashboard::GetNumber("Angle", 90.0);
+	Robot::GetDrive().DriveToAngle(float(angle));
 }
 
-bool DriveToAngle::IsFinished() {return Robot::GetDrive().AngleSet();}
+bool DriveToAngle::IsFinished() {return Robot::GetDrive().IsOnTarget();}
 
 void DriveToAngle::End()
 {

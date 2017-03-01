@@ -3,13 +3,22 @@
 
 
 MecanumDrive::MecanumDrive() :
-		frc::Subsystem("MecanumDrive"),
+		frc::PIDSubsystem("MecanumDrive", 0.3, 0.0, 0.0),
 		m_frontLeft(kFrontLeftTalon),
 		m_frontRight(kFrontRightTalon),
 		m_backLeft(kBackLeftTalon),
 		m_backRight(kBackRightTalon),
 		m_drive(m_frontLeft, m_backLeft, m_frontRight, m_backRight),
-		m_controller(0) {}
+		m_gyro(0)
+{
+	GetPIDController()->SetContinuous(true);
+	SetAbsoluteTolerance(2.0);
+	SetSetpoint(0.0);
+}
+
+double MecanumDrive::ReturnPIDInput() {return m_gyro->GetYaw();}
+
+void MecanumDrive::UsePIDOutput(double output) {m_drive.PIDWrite(output);}
 
 void MecanumDrive::InitDefaultCommand()
 {
@@ -30,11 +39,30 @@ void MecanumDrive::init()
 	m_drive.SetInvertedMotor(frc::RobotDrive::kFrontRightMotor, false);
 	m_drive.SetInvertedMotor(frc::RobotDrive::kRearLeftMotor, true);
 	m_drive.SetInvertedMotor(frc::RobotDrive::kRearRightMotor, false);
+
+	m_gyro = new AHRS(frc::SerialPort::kMXP);
+
+	Zero();
+
 }
 
 void MecanumDrive::DriveMecanum(float x, float y, float rotation, float gyro)
 {
-	init();
+	//init();
+	m_frontLeft.Set(0.0);
+	m_backLeft.Set(0.0);
+	m_frontRight.Set(0.0);
+	m_backRight.Set(0.0);
+
+	m_drive.SetExpiration(0.5);
+	m_drive.SetSafetyEnabled(false);
+
+	m_drive.SetInvertedMotor(frc::RobotDrive::kFrontLeftMotor, true);
+	m_drive.SetInvertedMotor(frc::RobotDrive::kFrontRightMotor, false);
+	m_drive.SetInvertedMotor(frc::RobotDrive::kRearLeftMotor, true);
+	m_drive.SetInvertedMotor(frc::RobotDrive::kRearRightMotor, false);
+
+
 
 	m_drive.MecanumDrive_Cartesian(double(x), double(y), double(rotation), double(gyro));
 	frc::SmartDashboard::PutNumber("DriveMecanum x", x);
@@ -43,33 +71,58 @@ void MecanumDrive::DriveMecanum(float x, float y, float rotation, float gyro)
 	frc::SmartDashboard::PutNumber("Gyro", gyro);
 }
 
-void MecanumDrive::DriveToAngle(AHRS* gyro, float setpoint)
+void MecanumDrive::DriveToAngle(float setpoint)
 {
 
-	init();
+	//init();
+	m_frontLeft.Set(0.0);
+	m_backLeft.Set(0.0);
+	m_frontRight.Set(0.0);
+	m_backRight.Set(0.0);
 
-	double kP = 0.03f;
-	double kI = 0.00f;
-	double kD = 0.00f;
-	double kF = 0.00f;
-	double kToleranceDegrees = 2.0f;
+	m_drive.SetExpiration(0.5);
+	m_drive.SetSafetyEnabled(false);
 
-    m_controller = new frc::PIDController(kP, kI, kD, kF, dynamic_cast<frc::PIDSource*>(gyro), dynamic_cast<frc::PIDOutput*>(&m_drive));
-    m_controller->SetInputRange(-180.0f,  180.0f);
-    m_controller->SetOutputRange(-1.0, 1.0);
-    m_controller->SetAbsoluteTolerance(kToleranceDegrees);
-    m_controller->SetContinuous(true);
-    m_controller->SetSetpoint(setpoint);
- 	m_controller->Enable();
+	m_drive.SetInvertedMotor(frc::RobotDrive::kFrontLeftMotor, true);
+	m_drive.SetInvertedMotor(frc::RobotDrive::kFrontRightMotor, false);
+	m_drive.SetInvertedMotor(frc::RobotDrive::kRearLeftMotor, true);
+	m_drive.SetInvertedMotor(frc::RobotDrive::kRearRightMotor, false);
+
+
+	SetSetpoint(setpoint);
+
+	Enable();
  }
 
 void MecanumDrive::DriveToAngleEnd()
 {
-	m_controller->Disable();
+	Disable();
 }
 
-bool MecanumDrive::AngleSet()
+bool MecanumDrive::IsOnTarget()
 {
-	return m_controller->OnTarget();
-
+	return OnTarget();
 }
+
+void MecanumDrive::GetGyro()
+{
+	frc::SmartDashboard::PutNumber("Gyro_Yaw", m_gyro->GetYaw());
+}
+
+
+void MecanumDrive::Zero()
+{
+	m_gyro->ZeroYaw();
+}
+
+float MecanumDrive::GetAngle()
+{
+	return m_gyro->GetYaw();
+}
+
+float MecanumDrive::GetDisplacement()
+{
+	return m_gyro->GetDisplacementX();
+}
+
+

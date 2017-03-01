@@ -24,7 +24,7 @@ class Robot: public frc::IterativeRobot
 
 		static Robot& GetRobot();
 		static MecanumDrive& GetDrive();
-		static GyroSensor& GetGyro();
+		//static GyroSensor& GetGyro();
 		static Shooter& GetShooter();
 		static Intake& GetIntake();
 		static Climber& GetClimber();
@@ -39,8 +39,8 @@ class Robot: public frc::IterativeRobot
 		frc::SendableChooser<frc::Command*> chooser;
 
 		static Robot m_robotInstance;
-		 MecanumDrive m_drive;
-		static GyroSensor m_gyro;
+		static MecanumDrive m_drive;
+		//static GyroSensor m_gyro;
 		static Shooter m_shooter;
 		static Intake m_intake;
 		static Climber m_climber;
