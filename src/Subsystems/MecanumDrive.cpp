@@ -52,8 +52,11 @@ void MecanumDrive::DriveToAngle(AHRS* gyro, float setpoint)
 	controller.SetSetpoint(setpoint);
 	controller.Enable();
 
-	DriveMecanum(0.0, 0.0, m_rotationRate, gyro->GetYaw());
- }
+	while(!controller.OnTarget())
+	{
+		DriveMecanum(0.0, 0.0, m_rotationRate, gyro->GetYaw());
+	}
+}
 
 void MecanumDrive::PIDWrite(double output)
 {
