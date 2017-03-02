@@ -5,22 +5,8 @@
 #include <AHRS.h>
 #include "../RobotMap.h"
 
-class PIDDrive : public frc::PIDOutput, public frc::RobotDrive
-{
-	public:
-		PIDDrive(CANTalon& a, CANTalon& b, CANTalon& c, CANTalon& d) : RobotDrive(a, b, c, d),
-																   m_rotationRate(0) {}
-		void PIDWrite(double output) override
-		{
-			m_rotationRate = output;
-		}
 
-	private:
-		double m_rotationRate;
-};
-
-
-class MecanumDrive: public frc::PIDSubsystem
+class MecanumDrive: public frc::Subsystem, public frc::PIDOutput
 {
 	public:
 		MecanumDrive();
@@ -28,20 +14,10 @@ class MecanumDrive: public frc::PIDSubsystem
 		void init();
 
 		void DriveMecanum(float xVel, float yVel, float rotation, float gyro);
-		void DriveToAngle(float setpoint);
-		void DriveToAngleEnd();
-		bool IsOnTarget();
+		void DriveToAngle(AHRS* gyro, float setpoint);
 
+		void PIDWrite(double output) override;
 
-		void GetGyro();
-		void Zero();
-		float GetAngle();
-		float GetDisplacement();
-
-
-	protected:
-		double ReturnPIDInput();
-		void UsePIDOutput(double output);
 
 	private:
 
@@ -49,8 +25,8 @@ class MecanumDrive: public frc::PIDSubsystem
 		CANTalon m_frontRight;
 		CANTalon m_backLeft;
 		CANTalon m_backRight;
-		PIDDrive m_drive;
+		RobotDrive m_drive;
 
-		AHRS* m_gyro;
+		double m_rotationRate;
 };
 

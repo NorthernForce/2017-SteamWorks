@@ -1,12 +1,9 @@
-/*
-
 #pragma once
 
 #include <WPILib.h>
 #include <AHRS.h>
 #include "RobotMap.h"
 
-*/
 
 /* The gyro we are using requires external libraries, namely the AHRS.h file.
  * This can be found at http://www.pdocs.kauailabs.com/navx-mxp/software/roborio-libraries/c/
@@ -18,7 +15,6 @@
  */
 
 
-/*
 class GyroSensor: public Subsystem
 {
 	public:
@@ -35,8 +31,6 @@ class GyroSensor: public Subsystem
 		AHRS* m_gyro;
 
 };
-
-*/
 
 
 

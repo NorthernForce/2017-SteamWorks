@@ -4,18 +4,14 @@
 #include "Robot.h"
 
 Robot Robot::m_robotInstance;
-MecanumDrive Robot::m_drive;
-//GyroSensor Robot::m_gyro;
+GyroSensor Robot::m_gyro;
 Shooter Robot::m_shooter;
 Intake Robot::m_intake;
 Climber Robot::m_climber;
 Flashlight Robot::m_light;
 
 
-Robot::Robot() : autonomousCommand(), chooser()
-{
-	//m_light = new Relay(1);
-}
+Robot::Robot() : autonomousCommand(), chooser() {}
 
 Robot& Robot::GetRobot()
 {
@@ -27,10 +23,10 @@ MecanumDrive& Robot::GetDrive()
 	return GetRobot().m_drive;
 }
 
-//GyroSensor& Robot::GetGyro()
-//{
-//	return GetRobot().m_gyro;
-//}
+GyroSensor& Robot::GetGyro()
+{
+	return GetRobot().m_gyro;
+}
 
 Shooter& Robot::GetShooter()
 {
@@ -65,7 +61,7 @@ void Robot::RobotInit()
 
 	m_oi.init();
 	m_drive.init();
-	//m_gyro.init();
+	m_gyro.init();
 	m_shooter.init();
 	m_intake.init();
 	m_climber.init();
@@ -127,10 +123,6 @@ void Robot::TeleopInit()
 
 void Robot::TeleopPeriodic()
 {
-
-	//m_light->Set(frc::Relay::kForward);
-
-
 	frc::Scheduler::GetInstance()->Run();
 }
 
