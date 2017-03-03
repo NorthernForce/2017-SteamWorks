@@ -11,7 +11,8 @@ class Climber: public Subsystem
 
 		Climber();
 		void init();
-		void SetClimber(bool set);
+		void SetClimber(double set);
+		double GetVoltage();
 
 	private:
 		CANTalon m_climber;

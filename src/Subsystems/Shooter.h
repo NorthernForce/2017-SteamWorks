@@ -15,6 +15,7 @@ class Shooter: public Subsystem
 		void SetWaterWheels(bool set);
 
 	private:
-		CANTalon m_shooter;
-		CANTalon m_wheels;
+		CANTalon m_shooterRight;
+		CANTalon m_shooterLeft;
+		frc::DigitalOutput m_wheels;
 };

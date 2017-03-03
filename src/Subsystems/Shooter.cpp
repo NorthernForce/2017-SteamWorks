@@ -3,30 +3,35 @@
 
 Shooter::Shooter() :
 	Subsystem("Shooter"),
-	m_shooter(kShooter),
+	m_shooterRight(kShooterRight),
+	m_shooterLeft(kShooterLeft),
 	m_wheels(kWaterWheels) {}
 
 void Shooter::init()
 {
-	m_shooter.Set(0.0);
-	m_shooter.SetExpiration(0.5);
-	m_shooter.SetSafetyEnabled(false);
+	m_shooterRight.Set(0.0);
+	m_shooterRight.SetExpiration(0.5);
+	m_shooterRight.SetSafetyEnabled(false);
+
+	m_shooterRight.Set(0.0);
+	m_shooterRight.SetExpiration(0.5);
+	m_shooterRight.SetSafetyEnabled(false);
 
 	m_wheels.Set(0.0);
-	m_wheels.SetExpiration(0.5);
-	m_wheels.SetSafetyEnabled(false);
 }
 
 void Shooter::SetShooter(bool set)
 {
 	if(set)
 	{
-		m_shooter.Set(0.5);
+		m_shooterRight.Set(0.5);
+		m_shooterLeft.Set(0.5);
 	}
 
 	else
 	{
-		m_shooter.Set(0.0);
+		m_shooterRight.Set(0.0);
+		m_shooterLeft.Set(0.0);
 	}
 }
 

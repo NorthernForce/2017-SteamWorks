@@ -7,20 +7,18 @@ Climber::Climber() :
 
 void Climber::init()
 {
+	m_climber.SetControlMode(frc::CANSpeedController::kVoltage);
 	m_climber.Set(0.0);
 	m_climber.SetExpiration(0.5);
 	m_climber.SetSafetyEnabled(false);
 }
 
-void Climber::SetClimber(bool set)
+void Climber::SetClimber(double set)
 {
-	if(set)
-	{
-		m_climber.Set(0.3);
-	}
+	m_climber.Set(set);
+}
 
-	else
-	{
-		m_climber.Set(0.0);
-	}
+double Climber::GetVoltage()
+{
+	return m_climber.GetBusVoltage();
 }
