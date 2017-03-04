@@ -18,16 +18,16 @@
 // constexpr int RANGE_FINDER_MODULE = 1;
 
 
-const int kFrontRightTalon = 1;
-const int kFrontLeftTalon = 3;
-const int kBackRightTalon = 4;
-const int kBackLeftTalon = 2;
+const int kFrontRightTalon = 3;
+const int kFrontLeftTalon = 4;
+const int kBackRightTalon = 6;
+const int kBackLeftTalon = 1;
 
-const int kShooterRight = 5; // THIS IS NOT TRUE
-const int kShooterLeft = 6; // THIS IS NOT TRUE
-const int kWaterWheels = 9; // Digitial Output 9
-const int kIntake = 7; //THIS IS NOT TRUE
-const int kClimber = 8; //THIS IS NOT TRUE
+const int kShooterRight = 0;
+const int kShooterLeft = 8;
+const int kWaterWheels = 7;
+const int kIntake = 5;
+const int kClimber = 2;
 
 const int kSpikeAddress = 0;
 const int kRelayPortA = 0;

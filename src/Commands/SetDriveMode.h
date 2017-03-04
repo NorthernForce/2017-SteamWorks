@@ -2,10 +2,10 @@
 
 #include <WPILib.h>
 
-class SetIntake: public frc::Command
+class SetDriveMode: public frc::Command
 {
 	public:
-		SetIntake();
+		SetDriveMode(bool mode);
 		void Initialize() override;
 		void Execute() override;
 		bool IsFinished() override;
@@ -13,7 +13,7 @@ class SetIntake: public frc::Command
 		void Interrupted() override;
 
 	private:
-		bool m_IsFinished;
 		bool m_mode;
+		bool m_IsFinished;
 };
 

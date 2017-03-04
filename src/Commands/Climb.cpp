@@ -25,7 +25,10 @@ void Climb::End()
 	Robot::GetClimber().SetClimber(false);
 }
 
-void Climb::Interrupted() {}
+void Climb::Interrupted()
+{
+	Robot::GetClimber().SetClimber(false);
+}
 
 
 

@@ -9,7 +9,8 @@ MecanumDrive::MecanumDrive() :
 		m_backLeft(kBackLeftTalon),
 		m_backRight(kBackRightTalon),
 		m_drive(m_frontLeft, m_backLeft, m_frontRight, m_backRight),
-		m_rotationRate(0.0) {}
+		m_rotationRate(0.0),
+		m_isDriveRelative(false) {}
 
 
 void MecanumDrive::InitDefaultCommand()
@@ -31,13 +32,27 @@ void MecanumDrive::init()
 	m_drive.SetInvertedMotor(frc::RobotDrive::kFrontRightMotor, false);
 	m_drive.SetInvertedMotor(frc::RobotDrive::kRearLeftMotor, true);
 	m_drive.SetInvertedMotor(frc::RobotDrive::kRearRightMotor, false);
+
+	m_frontLeft.SetFeedbackDevice(CANTalon::FeedbackDevice::QuadEncoder);
+	m_backLeft.SetFeedbackDevice(CANTalon::FeedbackDevice::QuadEncoder);
+	m_frontRight.SetFeedbackDevice(CANTalon::FeedbackDevice::QuadEncoder);
+	m_backRight.SetFeedbackDevice(CANTalon::FeedbackDevice::QuadEncoder);
+
 }
 
 void MecanumDrive::DriveMecanum(float x, float y, float rotation, float gyro)
 {
 	init();
 
-	m_drive.MecanumDrive_Cartesian(double(x), double(y), double(rotation), double(gyro));
+	if(m_isDriveRelative)
+	{
+		m_drive.MecanumDrive_Cartesian(double(x), double(y), double(rotation), double(gyro));
+	}
+
+	else
+	{
+		m_drive.MecanumDrive_Cartesian(double(x), double(y), double(rotation));
+	}
 }
 
 void MecanumDrive::DriveToAngle(AHRS* gyro, float setpoint)
@@ -54,8 +69,13 @@ void MecanumDrive::DriveToAngle(AHRS* gyro, float setpoint)
 
 	while(!controller.OnTarget())
 	{
-		DriveMecanum(0.0, 0.0, m_rotationRate, gyro->GetYaw());
+		DriveMecanum(0.0, 0.0, m_rotationRate, gyro->GetPitch());
 	}
+}
+
+void MecanumDrive::SetDriveRelative(bool mode)
+{
+	m_isDriveRelative = mode;
 }
 
 void MecanumDrive::PIDWrite(double output)

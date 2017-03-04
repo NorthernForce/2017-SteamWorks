@@ -5,9 +5,6 @@
 
 Robot Robot::m_robotInstance;
 GyroSensor Robot::m_gyro;
-Shooter Robot::m_shooter;
-Intake Robot::m_intake;
-Climber Robot::m_climber;
 Flashlight Robot::m_light;
 
 

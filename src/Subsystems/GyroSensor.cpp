@@ -15,8 +15,8 @@ void GyroSensor::GetGyro()
 {
 	//SmartDashboard::PutBoolean( "Gyro_Connected",        m_gyro->IsConnected());
 	frc::SmartDashboard::PutNumber(  "Gyro_Yaw",              m_gyro->GetYaw());
-	//SmartDashboard::PutNumber(  "Gyro_Pitch",            m_gyro->GetPitch());
-	//SmartDashboard::PutNumber(  "Gyro_Roll",             m_gyro->GetRoll());
+	frc::SmartDashboard::PutNumber(  "Gyro_Pitch",            m_gyro->GetPitch());
+	frc::SmartDashboard::PutNumber(  "Gyro_Roll",             m_gyro->GetRoll());
 	//SmartDashboard::PutNumber(  "Gyro_CompassHeading",   m_gyro->GetCompassHeading());
 	//SmartDashboard::PutNumber(  "Gyro_Update_Count",     m_gyro->GetUpdateCount());
 	//SmartDashboard::PutNumber(  "Gyro_Byte_Count",       m_gyro->GetByteCount());
@@ -45,7 +45,7 @@ void GyroSensor::Zero()
 
 float GyroSensor::GetAngle()
 {
-	return m_gyro->GetYaw();
+	return m_gyro->GetPitch();
 }
 
 float GyroSensor::GetDisplacement()

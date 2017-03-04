@@ -41,9 +41,9 @@ class Robot: public frc::IterativeRobot
 		static Robot m_robotInstance;
 		MecanumDrive m_drive;
 		static GyroSensor m_gyro;
-		static Shooter m_shooter;
-		static Intake m_intake;
-		static Climber m_climber;
+		Shooter m_shooter;
+		Intake m_intake;
+		Climber m_climber;
 		static Flashlight m_light;
 
 		OI m_oi;

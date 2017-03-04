@@ -8,27 +8,38 @@ Shoot::Shoot() : m_IsFinished(false)
 
 void Shoot::Initialize()
 {
-	Robot::GetShooter().SetWaterWheels(true);
 
-	Wait(2.0);
-
-	Robot::GetShooter().SetShooter(true);
 }
 
 void Shoot::Execute()
 {
-	m_IsFinished = Robot::GetOI().GetDriverStick().GetRightBumper();
+	double set = Robot::GetOI().GetManipulatorStick().GetAxis(frc::Joystick::AxisType::kZAxis);
+	++set;
+	set = set / 4;
+
+	double shoot = Robot::GetOI().GetDriverStick().GetLeftTrigger();
+	shoot += 0.5;
+
+	Robot::GetShooter().SetWaterWheels(set);
+
+	Robot::GetShooter().SetShooter(shoot);
+
+	Robot::GetShooter().Output();
 }
 
 bool Shoot::IsFinished() {return m_IsFinished;}
 
 void Shoot::End()
 {
-	Robot::GetShooter().SetWaterWheels(false);
-	Robot::GetShooter().SetShooter(false);
+	Robot::GetShooter().SetWaterWheels(0.0);
+	Robot::GetShooter().SetShooter(0.0);
 }
 
-void Shoot::Interrupted() {}
+void Shoot::Interrupted()
+{
+	Robot::GetShooter().SetWaterWheels(0.0);
+	Robot::GetShooter().SetShooter(0.0);
+}
 
 
 

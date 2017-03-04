@@ -11,11 +11,12 @@ class Shooter: public Subsystem
 
 		Shooter();
 		void init();
-		void SetShooter(bool set);
-		void SetWaterWheels(bool set);
+		void SetShooter(double set);
+		void SetWaterWheels(double set);
+		void Output();
 
 	private:
 		CANTalon m_shooterRight;
 		CANTalon m_shooterLeft;
-		frc::DigitalOutput m_wheels;
+		CANTalon m_wheels;
 };

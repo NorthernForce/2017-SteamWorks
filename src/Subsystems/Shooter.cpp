@@ -10,43 +10,28 @@ Shooter::Shooter() :
 void Shooter::init()
 {
 	m_shooterRight.Set(0.0);
-	m_shooterRight.SetExpiration(0.5);
-	m_shooterRight.SetSafetyEnabled(false);
-
-	m_shooterRight.Set(0.0);
-	m_shooterRight.SetExpiration(0.5);
-	m_shooterRight.SetSafetyEnabled(false);
-
+	m_shooterLeft.Set(0.0);
 	m_wheels.Set(0.0);
+
+	m_shooterRight.SetFeedbackDevice(CANTalon::FeedbackDevice::QuadEncoder);
+	m_shooterLeft.SetFeedbackDevice(CANTalon::FeedbackDevice::QuadEncoder);
 }
 
-void Shooter::SetShooter(bool set)
+void Shooter::SetShooter(double set)
 {
-	if(set)
-	{
-		m_shooterRight.Set(0.5);
-		m_shooterLeft.Set(0.5);
-	}
-
-	else
-	{
-		m_shooterRight.Set(0.0);
-		m_shooterLeft.Set(0.0);
-	}
+	m_shooterRight.Set(set);
+	m_shooterLeft.Set(set);
 }
 
-void Shooter::SetWaterWheels(bool set)
+void Shooter::SetWaterWheels(double set)
 {
-	if(set)
-	{
-		m_wheels.Set(0.5);
-	}
-
-	else
-	{
-		m_wheels.Set(0.0);
-	}
+	m_wheels.Set(set);
 }
 
+void Shooter::Output()
+{
+	frc::SmartDashboard::PutNumber("Right Shooter", m_shooterRight.GetEncVel());
+	frc::SmartDashboard::PutNumber("Left Shooter", m_shooterLeft.GetEncVel());
+}
 
 
