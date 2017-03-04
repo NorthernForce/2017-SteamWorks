@@ -14,5 +14,7 @@ class Shoot: public frc::Command
 
 	private:
 		bool m_IsFinished;
+		bool m_shooterOn;
+		double m_shoot;
 };
 

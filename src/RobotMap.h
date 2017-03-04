@@ -64,3 +64,11 @@ enum XBoxJoystickButtonPort
 
 const int kDriverStickPort = 0;
 const int kManipulatorStickPort = 1;
+const double kMaxShoot = 0.85;
+const double kTriggerThreshold = 0.1;
+const double kShootLow = 0.3;
+const double kShootHigh = 0.5;
+// max- sets maximum speed shooter can reach regardless of the trigger
+// triggerthres- sets amount of disturbance min. for trigger to be considered on
+// low/high- sets low/high mode shooter power
+

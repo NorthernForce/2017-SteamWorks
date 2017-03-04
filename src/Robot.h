@@ -14,6 +14,7 @@
 #include "Subsystems/Flashlight.h"
 #include "OI.h"
 #include <WPILib.h>
+#include "RobotMap.h"
 
 
 class Robot: public frc::IterativeRobot
