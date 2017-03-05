@@ -6,7 +6,7 @@
 Vision::Vision() :
 		Subsystem("Vision")
 {
-	m_cam = new PIXYCam(SPI::kOnboardCS0);
+	m_cam = new PIXYCam(SPI::kOnboardCS3);
 }
 
 void Vision::InitDefaultCommand()
