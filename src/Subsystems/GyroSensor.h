@@ -24,7 +24,9 @@ class GyroSensor: public Subsystem
 		void GetGyro();
 		void Zero();
 		float GetAngle();
-		float GetDisplacement();
+		float GetDisplacementX();
+		float GetDisplacementY();
+		float GetDisplacementZ();
 		AHRS* GetGyroObject();
 
 	private:

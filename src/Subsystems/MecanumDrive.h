@@ -6,7 +6,7 @@
 #include "../RobotMap.h"
 
 
-class MecanumDrive: public frc::Subsystem, public frc::PIDOutput
+class MecanumDrive: public frc::PIDSubsystem
 {
 	public:
 		MecanumDrive();
@@ -14,12 +14,15 @@ class MecanumDrive: public frc::Subsystem, public frc::PIDOutput
 		void init();
 
 		void DriveMecanum(float xVel, float yVel, float rotation, float gyro);
-		void DriveToAngle(AHRS* gyro, float setpoint);
+		void DriveToAngleInit(float setpoint);
+		void DriveToAngle(float angle);
 		void SetDriveRelative(bool mode);
+		bool GetIsDriveRelative();
 
+		void UsePIDOutput(double output) override;
+		double ReturnPIDInput() override;
 
-
-		void PIDWrite(double output) override;
+		void SetInput(double input);
 
 
 	private:
@@ -30,7 +33,8 @@ class MecanumDrive: public frc::Subsystem, public frc::PIDOutput
 		CANTalon m_backRight;
 		RobotDrive m_drive;
 
-		double m_rotationRate;
+		float m_rotationRate;
 		bool m_isDriveRelative;
+		double m_input;
 };
 

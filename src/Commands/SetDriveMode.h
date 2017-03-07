@@ -5,7 +5,7 @@
 class SetDriveMode: public frc::Command
 {
 	public:
-		SetDriveMode(bool mode);
+		SetDriveMode();
 		void Initialize() override;
 		void Execute() override;
 		bool IsFinished() override;
@@ -13,7 +13,6 @@ class SetDriveMode: public frc::Command
 		void Interrupted() override;
 
 	private:
-		bool m_mode;
 		bool m_IsFinished;
 };
 

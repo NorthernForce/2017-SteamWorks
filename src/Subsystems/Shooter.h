@@ -14,6 +14,8 @@ class Shooter: public Subsystem
 		void SetShooter(double set);
 		void SetWaterWheels(double set);
 		void Output();
+		void CheckJam();
+		double GetCurrent();
 
 	private:
 		CANTalon m_shooterRight;

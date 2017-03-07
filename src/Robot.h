@@ -12,6 +12,7 @@
 #include "Subsystems/Intake.h"
 #include "Subsystems/Climber.h"
 #include "Subsystems/Flashlight.h"
+#include "Subsystems/UltrasonicSensor.h"
 #include "OI.h"
 #include <WPILib.h>
 
@@ -29,7 +30,12 @@ class Robot: public frc::IterativeRobot
 		static Intake& GetIntake();
 		static Climber& GetClimber();
 		static Flashlight& GetLight();
+		static UltrasonicSensor& GetUltra();
 		static OI& GetOI();
+
+		static double GetWheelSpeed();
+		static double GetShootSpeed();
+		static double GetUserAngle();
 
 
 
@@ -45,6 +51,7 @@ class Robot: public frc::IterativeRobot
 		Intake m_intake;
 		Climber m_climber;
 		static Flashlight m_light;
+		static UltrasonicSensor m_ultra;
 
 		OI m_oi;
 

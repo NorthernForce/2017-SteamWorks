@@ -2,10 +2,10 @@
 
 #include <WPILib.h>
 
-class Auto: public frc::Command
+class AutoLeft: public frc::Command
 {
 	public:
-		Auto();
+		AutoLeft();
 		void Initialize() override;
 		void Execute() override;
 		bool IsFinished() override;

@@ -45,12 +45,22 @@ void GyroSensor::Zero()
 
 float GyroSensor::GetAngle()
 {
-	return m_gyro->GetPitch();
+	return m_gyro->GetYaw();
 }
 
-float GyroSensor::GetDisplacement()
+float GyroSensor::GetDisplacementX()
 {
 	return m_gyro->GetDisplacementX();
+}
+
+float GyroSensor::GetDisplacementY()
+{
+	return m_gyro->GetDisplacementY();
+}
+
+float GyroSensor::GetDisplacementZ()
+{
+	return m_gyro->GetDisplacementZ();
 }
 
 AHRS* GyroSensor::GetGyroObject()

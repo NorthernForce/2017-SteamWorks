@@ -7,7 +7,6 @@ Climber::Climber() :
 
 void Climber::init()
 {
-	m_climber.SetControlMode(frc::CANSpeedController::kVoltage);
 	m_climber.Set(0.0);
 }
 

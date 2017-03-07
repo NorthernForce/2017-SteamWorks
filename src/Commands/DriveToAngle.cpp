@@ -3,18 +3,22 @@
 #include <iostream>
 #include <cmath>
 
-DriveToAngle::DriveToAngle() : m_IsFinished(false)
+DriveToAngle::DriveToAngle() : m_IsFinished(false), m_angle(0.0)
 {
 	Requires(&Robot::GetDrive());
 	Requires(&Robot::GetGyro());
 }
 
-void DriveToAngle::Initialize() {}
+void DriveToAngle::Initialize()
+{
+	m_angle = Robot::GetUserAngle();
+	Robot::GetDrive().DriveToAngleInit(m_angle);
+}
 
 void DriveToAngle::Execute()
 {
-	double inputAngle = frc::SmartDashboard::GetNumber("Angle", 90.0);
-	Robot::GetDrive().DriveToAngle(Robot::GetGyro().GetGyroObject(), float(inputAngle));
+	Robot::GetDrive().SetInput(Robot::GetGyro().GetAngle());
+	Robot::GetDrive().DriveToAngle(Robot::GetGyro().GetAngle());
 }
 
 bool DriveToAngle::IsFinished() {return m_IsFinished;}

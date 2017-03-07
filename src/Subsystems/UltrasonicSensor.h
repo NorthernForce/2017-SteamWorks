@@ -4,17 +4,13 @@
 #include "RobotMap.h"
 
 
-class Ultrasonic: public Subsystem
+class UltrasonicSensor: public Subsystem
 {
 	public:
 
-		Ultrasonic();
+		UltrasonicSensor();
 		void init();
-		void GetGyro();
-		void Zero();
-		float GetAngle();
-		float GetDisplacement();
-		AHRS* GetGyroObject();
+		double GetUltra();
 
 	private:
 		frc::Ultrasonic* m_ultra;

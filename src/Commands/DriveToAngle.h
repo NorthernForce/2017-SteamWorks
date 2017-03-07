@@ -14,5 +14,6 @@ class DriveToAngle: public frc::Command
 
 	private:
 		bool m_IsFinished;
+		float m_angle;
 };
 

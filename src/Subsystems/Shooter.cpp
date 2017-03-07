@@ -34,4 +34,18 @@ void Shooter::Output()
 	frc::SmartDashboard::PutNumber("Left Shooter", m_shooterLeft.GetEncVel());
 }
 
+void Shooter::CheckJam()
+{
+	double current = m_wheels.GetOutputCurrent();
 
+	if(current > 20)
+	{
+
+	}
+
+}
+
+double Shooter::GetCurrent()
+{
+	return m_wheels.GetOutputCurrent();
+}

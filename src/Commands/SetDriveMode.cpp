@@ -1,15 +1,16 @@
 #include <Commands/SetDriveMode.h>
 #include "../Robot.h"
 
-SetDriveMode::SetDriveMode(bool mode) : m_mode(mode),
-										m_IsFinished(true)
+SetDriveMode::SetDriveMode() : m_IsFinished(false)
 {
 	Requires(&Robot::GetDrive());
 }
 
 void SetDriveMode::Initialize()
 {
-	Robot::GetDrive().SetDriveRelative(m_mode);
+	Robot::GetDrive().SetDriveRelative(!Robot::GetDrive().GetIsDriveRelative());
+
+	m_IsFinished = true;
 }
 
 void SetDriveMode::Execute() {}

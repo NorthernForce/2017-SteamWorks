@@ -1,4 +1,7 @@
-#include <Commands/Auto.h>
+#include <Commands/Auto/AutoLeft.h>
+#include <Commands/Auto/AutoRight.h>
+#include <Commands/Auto/AutoMiddle.h>
+
 #include <memory>
 
 #include "Robot.h"
@@ -6,6 +9,7 @@
 Robot Robot::m_robotInstance;
 GyroSensor Robot::m_gyro;
 Flashlight Robot::m_light;
+UltrasonicSensor Robot::m_ultra;
 
 
 Robot::Robot() : autonomousCommand(), chooser() {}
@@ -45,15 +49,36 @@ Flashlight& Robot::GetLight()
 	return GetRobot().m_light;
 }
 
+UltrasonicSensor& Robot::GetUltra()
+{
+	return GetRobot().m_ultra;
+}
+
 OI& Robot::GetOI()
 {
 	return GetRobot().m_oi;
 }
 
+double Robot::GetWheelSpeed()
+{
+	return frc::Preferences::GetInstance()->GetDouble("Set Wheel Speed", 0.3);
+}
+
+double Robot::GetShootSpeed()
+{
+	return frc::Preferences::GetInstance()->GetDouble("Set Shooter Speed", 0.85);
+}
+
+double Robot::GetUserAngle()
+{
+	return frc::Preferences::GetInstance()->GetDouble("Set Angle", 45.0);
+}
+
 void Robot::RobotInit()
 {
-	chooser.AddDefault("Default Auto", new Auto());
-	// chooser.AddObject("My Auto", new MyAutoCommand());
+	chooser.AddDefault("Middle Auto", new AutoMiddle());
+	chooser.AddObject("Left Auto", new AutoLeft());
+	chooser.AddObject("Right Auto", new AutoRight());
 	frc::SmartDashboard::PutData("Auto Modes", &chooser);
 
 	m_oi.init();
@@ -63,6 +88,7 @@ void Robot::RobotInit()
 	m_intake.init();
 	m_climber.init();
 	m_light.init();
+	m_ultra.init();
 }
 
 void Robot::DisabledPeriodic()
@@ -120,6 +146,10 @@ void Robot::TeleopInit()
 
 void Robot::TeleopPeriodic()
 {
+	//frc::SmartDashboard::PutNumber("Ultrasonic", m_ultra.GetUltra());
+	frc::SmartDashboard::PutNumber("Gyro", m_gyro.GetAngle());
+	frc::SmartDashboard::PutNumber("Water wheels current", m_shooter.GetCurrent());
+
 	frc::Scheduler::GetInstance()->Run();
 }
 

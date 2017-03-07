@@ -3,14 +3,15 @@
 
 
 MecanumDrive::MecanumDrive() :
-		frc::Subsystem("MecanumDrive"),
+		frc::PIDSubsystem("MecanumDrive", 0.3, 0.0, 0.0, 0.0),
 		m_frontLeft(kFrontLeftTalon),
 		m_frontRight(kFrontRightTalon),
 		m_backLeft(kBackLeftTalon),
 		m_backRight(kBackRightTalon),
 		m_drive(m_frontLeft, m_backLeft, m_frontRight, m_backRight),
 		m_rotationRate(0.0),
-		m_isDriveRelative(false) {}
+		m_isDriveRelative(false),
+		m_input(0) {}
 
 
 void MecanumDrive::InitDefaultCommand()
@@ -55,22 +56,20 @@ void MecanumDrive::DriveMecanum(float x, float y, float rotation, float gyro)
 	}
 }
 
-void MecanumDrive::DriveToAngle(AHRS* gyro, float setpoint)
+void MecanumDrive::DriveToAngleInit(float setpoint)
 {
 	init();
 
-	frc::PIDController controller(0.3, 0.0, 0.0, gyro, this);
+	SetInputRange(-180.0, 180.0);
+	SetOutputRange(-1.0, 1.0);
+	SetAbsoluteTolerance(2.0);
+	SetSetpoint(setpoint);
+	Enable();
+}
 
-	controller.SetContinuous(true);
-	controller.SetAbsoluteTolerance(2.0);
-	controller.SetSetpoint(0.0);
-	controller.SetSetpoint(setpoint);
-	controller.Enable();
-
-	while(!controller.OnTarget())
-	{
-		DriveMecanum(0.0, 0.0, m_rotationRate, gyro->GetPitch());
-	}
+void MecanumDrive::DriveToAngle(float angle)
+{
+		DriveMecanum(0.0, 0.0, m_rotationRate, angle);
 }
 
 void MecanumDrive::SetDriveRelative(bool mode)
@@ -78,9 +77,25 @@ void MecanumDrive::SetDriveRelative(bool mode)
 	m_isDriveRelative = mode;
 }
 
-void MecanumDrive::PIDWrite(double output)
+bool MecanumDrive::GetIsDriveRelative()
 {
-	m_rotationRate = output;
+	return m_isDriveRelative;
 }
 
+void MecanumDrive::UsePIDOutput(double output)
+{
+	m_rotationRate = output;
+
+	std::cout << "Rotation Rate " << m_rotationRate << std::endl;
+}
+
+double MecanumDrive::ReturnPIDInput()
+{
+	return m_input;
+}
+
+void MecanumDrive::SetInput(double input)
+{
+	m_input = input;
+}
 

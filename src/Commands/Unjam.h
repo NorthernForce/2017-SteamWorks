@@ -2,10 +2,10 @@
 
 #include <WPILib.h>
 
-class Shoot: public frc::Command
+class Unjam: public frc::Command
 {
 	public:
-		Shoot();
+		Unjam();
 		void Initialize() override;
 		void Execute() override;
 		bool IsFinished() override;
@@ -13,9 +13,6 @@ class Shoot: public frc::Command
 		void Interrupted() override;
 
 	private:
-
-		static double m_wheels;
-		static double m_shoot;
 
 		bool m_IsFinished;
 };
