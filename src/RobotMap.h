@@ -29,6 +29,8 @@ const int kWaterWheels = 7;
 const int kIntake = 5;
 const int kClimber = 2;
 
+const int kUltrasonic = 0; // DIO and Analog in both are 1
+
 const int kSpikeAddress = 0;
 const int kRelayPortA = 0;
 

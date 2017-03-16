@@ -10,6 +10,7 @@ AutoMiddle::AutoMiddle()
 	Requires(&Robot::GetIntake());
 	Requires(&Robot::GetShooter());
 	Requires(&Robot::GetUltra());
+	Requires(&Robot::GetClimber());
 }
 
 void AutoMiddle::Initialize()
@@ -17,18 +18,45 @@ void AutoMiddle::Initialize()
 
 void AutoMiddle::Execute()
 {
-	while(Robot::GetGyro().GetDisplacementZ() < 2.0)
+
+	double t = TimeSinceInitialized();
+
+	frc::SmartDashboard::PutNumber("Displacement X", Robot::GetGyro().GetDisplacementX());
+	frc::SmartDashboard::PutNumber("Displacement Y", Robot::GetGyro().GetDisplacementY());
+	frc::SmartDashboard::PutNumber("Displacement Z", Robot::GetGyro().GetDisplacementZ());
+
+	Robot::GetDrive().SetDriveRelative(false);
+
+	if(t < 2.7)
 	{
-		Robot::GetDrive().DriveMecanum(0.5, 0.0, 0.0, Robot::GetGyro().GetAngle());
+		Robot::GetDrive().DriveMecanum(0.0, 0.5, 0.0, 0.0);
+	}
+
+	if(t > 3.0)
+	{
+		Robot::GetDrive().DriveMecanum(0.0, 0.0, 0.0, 0.0);
+
+	}
+
+	if(t > 1.0)
+	{
+		Robot::GetClimber().SetClimber(0.0);
+	}
+
+
+/*
+	while(Robot::GetGyro().GetDisplacementX() < 2.0)
+	{
+		Robot::GetDrive().DriveMecanum(0.5, 0.0, 0.0, 0.0);
 	}
 
 	Robot::GetDrive().DriveMecanum(0.0, 0.0, 0.0, 0.0);
 
 	Wait(2.0);
 
-	while(Robot::GetGyro().GetDisplacementZ() > 0.5)
+	while(Robot::GetGyro().GetDisplacementX() > 0.5)
 	{
-		Robot::GetDrive().DriveMecanum(-0.5, 0.0, 0.0, Robot::GetGyro().GetAngle());
+		Robot::GetDrive().DriveMecanum(-0.5, 0.0, 0.0, 0.0);
 	}
 
 	Robot::GetDrive().DriveMecanum(0.0, 0.0, 0.0, 0.0);
@@ -37,7 +65,7 @@ void AutoMiddle::Execute()
 
 	while(Robot::GetGyro().GetDisplacementY() < 3.0)
 	{
-		Robot::GetDrive().DriveMecanum(0.5, 0.0, 0.0, Robot::GetGyro().GetAngle());
+		Robot::GetDrive().DriveMecanum(0.5, 0.0, 0.0, 0.0);
 	}
 
 	Robot::GetDrive().DriveMecanum(0.0, 0.0, 0.0, 0.0);
@@ -45,6 +73,7 @@ void AutoMiddle::Execute()
 	Robot::GetShooter().SetWaterWheels(1.0);
 	Robot::GetShooter().SetShooter(0.85);
 
+*/
 
 }
 

@@ -39,6 +39,13 @@ void MecanumDrive::init()
 	m_frontRight.SetFeedbackDevice(CANTalon::FeedbackDevice::QuadEncoder);
 	m_backRight.SetFeedbackDevice(CANTalon::FeedbackDevice::QuadEncoder);
 
+	//m_frontLeft.SetControlMode(CANTalon::ControlMode::kSpeed);
+	//m_backLeft.SetControlMode(CANTalon::ControlMode::kSpeed);
+	//m_frontRight.SetControlMode(CANTalon::ControlMode::kSpeed);
+	//m_backRight.SetControlMode(CANTalon::ControlMode::kSpeed);
+
+	m_isDriveRelative = false;
+
 }
 
 void MecanumDrive::DriveMecanum(float x, float y, float rotation, float gyro)
@@ -54,6 +61,11 @@ void MecanumDrive::DriveMecanum(float x, float y, float rotation, float gyro)
 	{
 		m_drive.MecanumDrive_Cartesian(double(x), double(y), double(rotation));
 	}
+
+	//frc::SmartDashboard::PutNumber("FL", m_frontLeft.GetEncVel());
+	//frc::SmartDashboard::PutNumber("FR", m_frontRight.GetEncVel());
+
+
 }
 
 void MecanumDrive::DriveToAngleInit(float setpoint)
@@ -61,7 +73,7 @@ void MecanumDrive::DriveToAngleInit(float setpoint)
 	init();
 
 	SetInputRange(-180.0, 180.0);
-	SetOutputRange(-1.0, 1.0);
+	SetOutputRange(0.0, 1.0);
 	SetAbsoluteTolerance(2.0);
 	SetSetpoint(setpoint);
 	Enable();
@@ -84,9 +96,7 @@ bool MecanumDrive::GetIsDriveRelative()
 
 void MecanumDrive::UsePIDOutput(double output)
 {
-	m_rotationRate = output;
-
-	std::cout << "Rotation Rate " << m_rotationRate << std::endl;
+	PIDWrite(output);
 }
 
 double MecanumDrive::ReturnPIDInput()
@@ -99,3 +109,35 @@ void MecanumDrive::SetInput(double input)
 	m_input = input;
 }
 
+void MecanumDrive::PIDWrite(double output)
+{
+	m_rotationRate = output;
+
+	std::cout << "Rotation Rate " << m_rotationRate << std::endl;
+}
+
+void MecanumDrive::DriveBL(double set)
+{
+	m_backLeft.Set(set);
+	frc::SmartDashboard::PutNumber("BL", m_backLeft.GetSpeed());
+
+}
+
+void MecanumDrive::DriveBR(double set)
+{
+	m_backRight.Set(set);
+	frc::SmartDashboard::PutNumber("BR", m_backRight.GetSpeed());
+}
+
+void MecanumDrive::DriveFL(double set)
+{
+	m_frontLeft.Set(set);
+	frc::SmartDashboard::PutNumber("FL", m_frontLeft.GetSpeed());
+}
+
+void MecanumDrive::DriveFR(double set)
+{
+	m_frontRight.Set(set);
+	frc::SmartDashboard::PutNumber("FR", m_frontRight.GetSpeed());
+
+}

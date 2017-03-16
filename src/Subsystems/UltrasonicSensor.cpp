@@ -7,13 +7,18 @@ UltrasonicSensor::UltrasonicSensor() :
 
 void UltrasonicSensor::init()
 {
-	//m_ultra = new Ultrasonic(9);
+	m_ultra = new frc::AnalogInput(kUltrasonic);
 }
 
 // Returns distance in feet
 double UltrasonicSensor::GetUltra()
 {
-	return m_ultra->GetRangeInches() / 12;
+	if(!m_ultra)
+	{
+		m_ultra = new frc::AnalogInput(kUltrasonic);
+	}
+
+	return m_ultra->GetVoltage() / 0.0098;
 }
 
 

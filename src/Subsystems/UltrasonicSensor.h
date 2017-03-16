@@ -13,7 +13,7 @@ class UltrasonicSensor: public Subsystem
 		double GetUltra();
 
 	private:
-		frc::Ultrasonic* m_ultra;
+		frc::AnalogInput* m_ultra;
 
 };
 

@@ -15,6 +15,7 @@ void Shooter::init()
 
 	m_shooterRight.SetFeedbackDevice(CANTalon::FeedbackDevice::QuadEncoder);
 	m_shooterLeft.SetFeedbackDevice(CANTalon::FeedbackDevice::QuadEncoder);
+	m_wheels.SetFeedbackDevice(CANTalon::FeedbackDevice::QuadEncoder);
 }
 
 void Shooter::SetShooter(double set)
@@ -36,11 +37,11 @@ void Shooter::Output()
 
 void Shooter::CheckJam()
 {
-	double current = m_wheels.GetOutputCurrent();
+	double encVel = m_wheels.GetEncVel();
 
-	if(current > 20)
+	if(encVel < 5)
 	{
-
+		m_wheels.Set(0.0);
 	}
 
 }

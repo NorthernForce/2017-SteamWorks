@@ -22,8 +22,3 @@ void Intake::SetIntake(bool set)
 		m_intake.Set(0.0);
 	}
 }
-
-
-
-
-

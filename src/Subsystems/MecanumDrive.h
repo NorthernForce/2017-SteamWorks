@@ -24,6 +24,13 @@ class MecanumDrive: public frc::PIDSubsystem
 
 		void SetInput(double input);
 
+		void PIDWrite(double output) override;
+
+		void DriveFL(double set);
+		void DriveFR(double set);
+		void DriveBL(double set);
+		void DriveBR(double set);
+
 
 	private:
 

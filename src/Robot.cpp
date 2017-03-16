@@ -8,7 +8,6 @@
 
 Robot Robot::m_robotInstance;
 GyroSensor Robot::m_gyro;
-Flashlight Robot::m_light;
 UltrasonicSensor Robot::m_ultra;
 
 
@@ -44,11 +43,6 @@ Climber& Robot::GetClimber()
 	return GetRobot().m_climber;
 }
 
-Flashlight& Robot::GetLight()
-{
-	return GetRobot().m_light;
-}
-
 UltrasonicSensor& Robot::GetUltra()
 {
 	return GetRobot().m_ultra;
@@ -61,7 +55,7 @@ OI& Robot::GetOI()
 
 double Robot::GetWheelSpeed()
 {
-	return frc::Preferences::GetInstance()->GetDouble("Set Wheel Speed", 0.3);
+	return frc::Preferences::GetInstance()->GetDouble("Set Wheel Speed", -0.5);
 }
 
 double Robot::GetShootSpeed()
@@ -87,7 +81,6 @@ void Robot::RobotInit()
 	m_shooter.init();
 	m_intake.init();
 	m_climber.init();
-	m_light.init();
 	m_ultra.init();
 }
 
@@ -146,9 +139,11 @@ void Robot::TeleopInit()
 
 void Robot::TeleopPeriodic()
 {
-	//frc::SmartDashboard::PutNumber("Ultrasonic", m_ultra.GetUltra());
-	frc::SmartDashboard::PutNumber("Gyro", m_gyro.GetAngle());
-	frc::SmartDashboard::PutNumber("Water wheels current", m_shooter.GetCurrent());
+	frc::SmartDashboard::PutNumber("Ultrasonic", m_ultra.GetUltra());
+
+	//m_gyro.GetGyro();
+
+	//frc::SmartDashboard::PutNumber("Water wheels current", m_shooter.GetCurrent());
 
 	frc::Scheduler::GetInstance()->Run();
 }
@@ -157,7 +152,6 @@ void Robot::TestPeriodic()
 {
 	frc::LiveWindow::GetInstance()->Run();
 }
-
 
 
 START_ROBOT_CLASS(Robot)

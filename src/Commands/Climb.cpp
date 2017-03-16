@@ -6,19 +6,28 @@ Climb::Climb() : m_IsFinished(false)
 	Requires(&Robot::GetClimber());
 }
 
-void Climb::Initialize() {}
+void Climb::Initialize()
+{
+	//Robot::GetClimber().SetRelay();
+}
 
 void Climb::Execute()
 {
-	Robot::GetClimber().SetClimber(0.2);
+	//double t = TimeSinceInitialized();
 
-	Wait(1.0);
+	//if(t < 1.0) {Robot::GetClimber().SetClimber(0.2);}
 
-	Robot::GetClimber().SetClimber(-1.0);
+	//if(t > 1.0 && t < 6.0)
+	//{
+		Robot::GetClimber().SetClimber(-1.0);
+	//}
 
-	Wait(3.0);
+	// while(!Robot::GetClimber().GetVel()) {}
+	// while(Robot::GetUltrasonic().GetDistance() > 0.1) {}
 
-	m_IsFinished = true;
+	//if(t > 6.0)
+	//{
+	//}
 }
 
 bool Climb::IsFinished() {return m_IsFinished;}
@@ -26,12 +35,10 @@ bool Climb::IsFinished() {return m_IsFinished;}
 void Climb::End()
 {
 	Robot::GetClimber().SetClimber(0.0);
+	//Robot::GetClimber().SetVoltage();
 }
 
-void Climb::Interrupted()
-{
-	Robot::GetClimber().SetClimber(0.0);
-}
+void Climb::Interrupted() {Robot::GetClimber().SetClimber(0.0);}
 
 
 

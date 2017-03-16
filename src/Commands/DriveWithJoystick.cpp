@@ -13,7 +13,7 @@ void DriveWithJoystick::Initialize() {}
 
 void DriveWithJoystick::Execute()
 {
-	float x = Robot::GetOI().GetDriverStick().GetLeftStickX();
+	float x = -Robot::GetOI().GetDriverStick().GetLeftStickX();
 	float y = Robot::GetOI().GetDriverStick().GetLeftStickY();
 	float w = Robot::GetOI().GetDriverStick().GetRightStickX();
 	float g = Robot::GetGyro().GetAngle();
