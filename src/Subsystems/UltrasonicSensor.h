@@ -14,6 +14,8 @@ class UltrasonicSensor: public Subsystem
 
 	private:
 		frc::AnalogInput* m_ultra;
+		frc::DigitalOutput* m_pinOutZero;
+		frc::DigitalOutput* m_pinOutOne;
 
 };
 

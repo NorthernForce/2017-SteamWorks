@@ -20,6 +20,7 @@ void GyroSensor::GetGyro()
 	frc::SmartDashboard::PutNumber(  "Velocity_Y",           m_gyro->GetVelocityY() );
 	frc::SmartDashboard::PutNumber(  "Displacement_X",       m_gyro->GetDisplacementX() );
 	frc::SmartDashboard::PutNumber(  "Displacement_Y",       m_gyro->GetDisplacementY() );
+	frc::SmartDashboard::PutNumber("Displacement_Z", m_gyro->GetDisplacementZ());
 }
 
 

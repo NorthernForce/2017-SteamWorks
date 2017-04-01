@@ -47,6 +47,13 @@ const int kAttackJoystickButton10 = 10;
 const int kAttackJoystickButton11 = 11;
 //const int kAttackJoystickButton12 = 11;
 
+const int kMaxSample = 600;
+const int kMotors = 4;
+const int kFL = 0;
+const int kBL = 1;
+const int kFR = 2;
+const int kBR = 3;
+
 constexpr float kDeadbandLimit = 0.01;
 
 enum XBoxJoystickButtonPort

@@ -141,7 +141,7 @@ void Robot::TeleopPeriodic()
 {
 	frc::SmartDashboard::PutNumber("Ultrasonic", m_ultra.GetUltra());
 
-	//m_gyro.GetGyro();
+	m_gyro.GetGyro();
 
 	//frc::SmartDashboard::PutNumber("Water wheels current", m_shooter.GetCurrent());
 

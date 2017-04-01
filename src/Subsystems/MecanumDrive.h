@@ -13,6 +13,8 @@ class MecanumDrive: public frc::PIDSubsystem
 		void InitDefaultCommand() override;
 		void init();
 
+		float AvgValue(int Motor, float Val);
+
 		void DriveMecanum(float xVel, float yVel, float rotation, float gyro);
 		void DriveToAngleInit(float setpoint);
 		void DriveToAngle(float angle);
@@ -31,6 +33,11 @@ class MecanumDrive: public frc::PIDSubsystem
 		void DriveBL(double set);
 		void DriveBR(double set);
 
+		void FLData();
+		void FRData();
+		void BLData();
+		void BRData();
+
 
 	private:
 
@@ -43,5 +50,16 @@ class MecanumDrive: public frc::PIDSubsystem
 		float m_rotationRate;
 		bool m_isDriveRelative;
 		double m_input;
+
+		int m_pos;
+		float m_A[kMotors][kMaxSample];
+
+		double m_p;
+		double m_i;
+		double m_d;
+		double m_f;
+		int    m_ppr;
+		double m_ramprate;
+		int    m_profile;
 };
 
